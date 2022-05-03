@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import InputGroup from '../components/InputGroup';
 
 
 export default function Login() {
@@ -19,8 +20,8 @@ export default function Login() {
                 <h1 className="text-2xl font-bold mb-4">Login</h1>
 
                 <section className="flex flex-col gap-2 mb-6">
-                    <LabelGroup name="Username" callback={setUsername} />
-                    <LabelGroup name="Password" callback={setPassword} />
+                    <InputGroup name="Username" value={username} callback={setUsername} />
+                    <InputGroup name="Password" value={password} callback={setPassword} />
                 </section>
 
                 <section className="flex gap-2">
@@ -36,20 +37,6 @@ export default function Login() {
                     </Link>
                 </section>
             </main>
-        </div>
-    )
-}
-
-type LabelGroupProps = {name: string, callback: (value: string) => void}
-function LabelGroup(props: LabelGroupProps) {
-    return (
-        <div className="flex flex-col gap-1">
-            <label htmlFor={props.name} className="text-sm text-gray-500">{props.name}</label>
-            <input
-                id={props.name}
-                className="border border-gray-300 rounded px-2.5 py-1"
-                onChange={(e) => props.callback(e.target.value)}
-            />
         </div>
     )
 }
