@@ -9,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     return (
-        <div className="flex h-screen items-center justify-center bg-red-500">
+        <div className="flex h-screen items-center justify-center bg-gradient-to-br from-orange-400 via-red-500 to-pink-600">
             <Head>
                 <title>Login | Capstone</title>
                 <meta name="description" content="Log in. -Kepler" />
