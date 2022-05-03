@@ -13,7 +13,7 @@ export default function Home() {
 
             <Header />
 
-            <main className="container mt-8">
+            <main className="container">
                 <h1 className="text-7xl font-bold text-center mb-4">[Insert Name at the End]</h1>
                 <p className="text-center">The best card game since sliced poker.</p>
             </main>
