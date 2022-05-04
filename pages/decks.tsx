@@ -18,14 +18,10 @@ export default function Decks() {
         setDecks(JSON.parse(decks));
     }, []);
 
-    // Save new decks in localStorage
-    useEffect(() => {
-        localStorage.setItem('decks', JSON.stringify(decks));
-    }, [decks]);
-
     function addDeck(deck: Deck) {
         decks.push(deck);
         setDecks([...decks]);
+        localStorage.setItem('decks', JSON.stringify(decks));
     }
 
     return (
