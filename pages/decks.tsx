@@ -41,7 +41,7 @@ export default function Decks() {
                     {decks.map(deck => <DeckComponent key={deck.name} {...deck} />)}
                 </section>
 
-                <button onClick={() => setOpen(true)}>Add deck</button>
+                <button className="px-2.5 py-1 font-medium bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-lg" onClick={() => setOpen(true)}>Add deck</button>
                 <CreateDeckModal isOpen={open} setIsOpen={setOpen} callback={addDeck} />
             </main>
         </div>
