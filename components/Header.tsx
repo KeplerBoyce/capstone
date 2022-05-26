@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import { currentUser } from '../util/helpers';
-import { logOut } from '../util/helpers';
+import { currentUser, logOut } from '../util/helpers';
 
 export default function Header() {
     return (
-        <header className="h-14 hover:shadow-md grid grid-cols-2 transition-shadow duration-200 mb-8 px-5 border-b">
+        <header className="sticky top-0 bg-white h-14 hover:shadow-md grid grid-cols-2 transition-shadow duration-200 mb-8 px-5 border-b">
             <Link href="/">
                 <button className="flex justify-start items-center text-2xl font-bold w-min">Capstone</button>
             </Link>

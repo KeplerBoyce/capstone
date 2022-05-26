@@ -3,18 +3,17 @@ import { InputErrorMessage } from './InputGroup';
 
 
 type CardInputGroupProps = {
-    name: string, 
     index: number, 
     value: { front: string, back: string }, 
     callback: (e: ChangeEvent<HTMLInputElement>, index: number) => void, 
     remove: (index: number) => void 
 };
 export default function CardInputGroup(props: CardInputGroupProps) {
-    const {name, index, value: {front, back}, callback, remove} = props;
+    const {index, value: {front, back}, callback, remove} = props;
 
     return (
         <div className="flex flex-col gap-1">
-            <section className="flex gap-1.5 items-center -mr-1.5">
+            <section className="flex w-[100%] gap-1.5 justify-end items-center -mr-1.5">
                 <span className="font-mono text-gray-400">{index + 1}.</span>
                 <div className="grid grid-cols-2 gap-1">
                     <input
@@ -38,7 +37,7 @@ export default function CardInputGroup(props: CardInputGroupProps) {
                     <button 
                         disabled={index == 0} 
                         onClick={() => remove(index)} 
-                        className="px-2 font-bold text-2xl text-gray-400 disabled:text-gray-200 rounded-lg"
+                        className="px-2 font-bold text-2xl text-gray-400 hover:text-black duration-200 disabled:text-gray-200"
                     >
                         ×
                     </button>

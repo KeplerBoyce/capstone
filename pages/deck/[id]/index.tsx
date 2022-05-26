@@ -6,6 +6,7 @@ import { currentUser } from '../../../util/helpers';
 import { useRouter } from 'next/router';
 import CreateDeckModal from '../../../components/CreateDeckModal';
 import { useState } from 'react';
+import axios from 'axios';
 
 export async function getServerSideProps(context) {
     const id = Number(context.query.id);
@@ -24,8 +25,12 @@ export default ({deck}) => {
     const cards = deck.cards.map(e => JSON.parse(e));
     const [open, setOpen] = useState(false);
 
-    const editDeck = async () => {
-
+    const editDeck = async (newDeck) => {
+        // setDecks([...decks, deck]);
+        // localStorage.setItem('decks', JSON.stringify(decks));
+        if (currentUser()) {
+            await axios.post("/api/createDeck", {...newDeck});
+        }
     }
 
     return (
@@ -39,13 +44,11 @@ export default ({deck}) => {
             <Header />
 
             <main className="container">
-                <div className="flex flex-col divide-y-2 divide-gray-400">
-                    <div className="flex items-baseline gap-3">
-                        <span className="text-3xl font-bold">{deck.title}</span>
-                        <span className="text-gray-500">Created by {deck.creatorName}</span>
-                    </div>
-                    <p className="text-gray-500 mb-6">{deck.description}</p>
+                <div className="flex items-end gap-3 border-b border-gray-400">
+                    <span className="text-3xl font-bold break-words overflow-hidden">{deck.title}</span>
+                    <span className="text-gray-500 whitespace-nowrap items-baseline">Created by {deck.creatorName}</span>
                 </div>
+                <p className="text-gray-500 mb-6">{deck.description}</p>
 
                 <div className="flex gap-1">
                     <Link href="/decks">
@@ -58,7 +61,13 @@ export default ({deck}) => {
                             <button onClick={() => setOpen(true)} className="px-2.5 py-1 font-medium bg-gradient-to-b from-red-500 to-pink-600 text-white rounded-lg mb-6">
                                 Edit deck
                             </button>
-                            <CreateDeckModal new={false} isOpen={open} setIsOpen={setOpen} callback={editDeck} />
+                            <CreateDeckModal
+                                isNew={false}
+                                prefill={{title: deck.title, description: deck.description, cards}}
+                                isOpen={open}
+                                setIsOpen={setOpen}
+                                callback={editDeck}
+                            />
                         </>
                     )}
                     <Link href={router.asPath + "/study"}>

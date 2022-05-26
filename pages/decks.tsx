@@ -45,7 +45,15 @@ export default ({serverDecks}) => {
             <Header />
 
             <main className="container">
-                <h1 className="text-3xl font-bold mb-4">Decks</h1>
+                <h1 className="text-3xl font-bold mb-6">Decks</h1>
+
+                <button onClick={() => setOpen(true)} className="px-2.5 py-1 font-medium bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-lg mb-4">Add deck</button>
+                <CreateDeckModal
+                    isNew={true}
+                    isOpen={open}
+                    setIsOpen={setOpen}
+                    callback={addDeck}
+                />
 
                 <section className="flex flex-col mb-4 divide-y">
                     {serverDecks.map(deck => {
@@ -58,9 +66,6 @@ export default ({serverDecks}) => {
                         )
                     })}
                 </section>
-
-                <button onClick={() => setOpen(true)} className="px-2.5 py-1 font-medium bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-lg">Add deck</button>
-                <CreateDeckModal new={true} isOpen={open} setIsOpen={setOpen} callback={addDeck} />
             </main>
         </div>
     )
